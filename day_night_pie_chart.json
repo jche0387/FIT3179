@@ -1,0 +1,19 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Pie Chart of Day vs Night",
+    "data": {"url": "https://raw.githubusercontent.com/jche0387/FIT3179/main/wildfire%20in%20aus%201%20aug%20to%2031%20aug.csv"},
+    "transform": [
+        {
+            "aggregate": [{"op": "count", "field": "daynight", "as": "DayOrNight"}],
+            "groupby": ["daynight"]
+        },
+        {"filter": "datum.daynight == 'D'"},
+        {"filter": "datum.daynight == 'N'"}
+    ],
+    "mark": {"type": "arc", "tooltip": true},
+    "encoding": {
+      "theta": {"field": "DayOrNight", "type": "quantitative"},
+      "color": {"field": "daynight", "type": "nominal"}
+    }
+}
+    
